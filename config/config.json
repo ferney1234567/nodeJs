@@ -12,15 +12,15 @@
     "database": "db_api_rest_1kl2",
     "host": "dpg-d0qcci15pdvs73ag6d5g-a",
     "dialect": "postgres",
-    "dialectOptions":{
-      "ssl":{
-        "requiere":true,
-        "rejectUnauthorized ":false
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
       }
     }
   },
   "production": {
-    "username": "z",
+    "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
