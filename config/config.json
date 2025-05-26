@@ -7,14 +7,20 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "ferney",
+    "password": "Odr0RQTdIIyUB838G37qfUhPIr0yfpCs",
+    "database": "db_api_rest_1kl2",
+    "host": "dpg-d0qcci15pdvs73ag6d5g-a",
+    "dialect": "postgres",
+    "dialectOptions":{
+      "ssl":{
+        "requiere":true,
+        "rejectUnauthorized ":false
+      }
+    }
   },
   "production": {
-    "username": "root",
+    "username": "z",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
