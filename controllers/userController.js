@@ -42,14 +42,13 @@ const updateUser = async (req, res) => {
     res.status(400).send({ status: "failed", message: null });
   }
 };
-
 const deleteUser = async (req, res) => {
   const id = req.params.id;
   const deletedUser = await userService.deleteUser(id);
   if (deletedUser) {
-    res.status(200).send({ status: "Ok", data: deletedUser });
+    res.status(200).send({ status: "Deleted", data: deletedUser });
   } else {
-    res.status(400).send({ status: "failed", message: null });
+    res.status(404).send({ status: "Not found", message: null });
   }
 };
 
