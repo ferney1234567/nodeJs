@@ -37,15 +37,21 @@ const updateArticle = async(req,res)=>{
     else
         res.status(400).send({ status: "FAILED", data: updatedArticle});
 };
-
-const deleteArticle= async (req,res)=>{
+const deleteArticle = async (req, res) => {
     let id = req.params.id;
+
+    if (!id) {
+        return res.status(400).send({ status: "FAILED", data: "ID no proporcionado" });
+    }
+
     const deletedArticle = await Articleservice.deleteArticle(id);
-    if (deletedArticle) 
-        res.status(200).send({ status: "OK", data: deletedArticle});
+
+    if (deletedArticle)
+        res.status(200).send({ status: "OK", data: deletedArticle });
     else
-        res.status(400).send({status: "FAILED", data: deletedArticle});
+        res.status(400).send({ status: "FAILED", data: "No se pudo eliminar el artículo" });
 };
+
 
 module.exports ={
     getAllArticles,
