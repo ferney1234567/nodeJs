@@ -1,23 +1,26 @@
 'use strict';
-const { Model } = require('sequelize');
-
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Article extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      // Un artículo pertenece a un usuario
-      Article.belongsTo(models.User);
+      // define association here
+      Article.belongsTo(models.User); //un articulo pertenece a un usuario
+      models.User.hasMany(Article); //un usuario puede tener muchos articulos
 
-      // Un usuario puede tener muchos artículos
-      models.User.hasMany(Article);
-
-      // Un artículo puede pertenecer a muchas categorías
       Article.belongsToMany(models.Category, {
-        through: "articleCategories",
-        as: "categories", // Alias que se debe usar al incluir categorías
-      });
+        through:"articleCategories",
+        as:"categories",
+      })
+
     }
   }
-
   Article.init({
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
@@ -26,6 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Article',
   });
-
   return Article;
 };

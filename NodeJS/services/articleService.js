@@ -3,22 +3,29 @@ const db = require('../models');
 const getAllArticles = async () => {
     try {
         let Articles = await db.Article.findAll({
-            include: {
-                model: db.User,
-                required: true,
-                as: "User",
-                attributes: ["id", 'name', 'email']
-            },
+            include: [
+                {
+                    model: db.User,
+                    as: "User", // 👈 Este alias debe coincidir si lo definiste en la relación
+                    attributes: ["id", "name", "email"]
+                },
+                {
+                    model: db.Category,
+                    as: "categories", // 👈 Este alias debe coincidir con el que usaste en belongsToMany
+                    attributes: ["id", "name"],
+                    through: { attributes: [] } // ⬅️ Para no mostrar info de tabla intermedia
+                }
+            ],
             attributes: {
                 exclude: ['createdAt', 'updatedAt']
-            },
-            include: ["categories"]
+            }
         });
         return Articles;
     } catch (error) {
         return error.message || "Failed to get Articles";
     }
 };
+
 
 const getArticle = async (id) => {
     try {
