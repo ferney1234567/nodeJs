@@ -1,20 +1,20 @@
 const db = require('../models');
+
 const getAllCategory = async () => {
     try {
         let Categorys = await db.Category.findAll({
             include: {
                 model: db.Article,
+                required: true,
                 as: "articles",
                 attributes: ["id", 'title', 'content', 'UserId']
-                // No pongas `required: true`
             },
         });
         return Categorys;
     } catch (error) {
-        return error.message || "Failed to get Categories";
+        return error.message || "Failed to get Categorys";
     }
 };
-
 
 const getCategory = async (id) => {
     try {
