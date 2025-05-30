@@ -39,7 +39,7 @@ const createCategory = async (name) => {
 const updateCategory = async (id, name) => {
     try {
         let updatedCategory = await db.Category.update({
-            articlesId
+               name
         }, {
             where: { id }
         });
