@@ -7,7 +7,7 @@ const getAllArticles = async () => {
                 model: db.User,
                 required: true,
                 as: "User",
-                attributes: ["id", 'username', 'email']
+                attributes: ["id", 'name', 'email']
             },
             attributes: {
                 exclude: ['createdAt', 'updatedAt']
