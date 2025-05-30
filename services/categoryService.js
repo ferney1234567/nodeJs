@@ -6,7 +6,7 @@ const getAllCategory = async () => {
             include: {
                 model: db.Article,
                 required: true,
-                as: "Article",
+                as: "articles",
                 attributes: ["id", 'title', 'content', 'UserId']
             },
         });
@@ -39,7 +39,7 @@ const createCategory = async (name) => {
 const updateCategory = async (id, name) => {
     try {
         let updatedCategory = await db.Category.update({
-               name
+            name       
         }, {
             where: { id }
         });
@@ -48,6 +48,7 @@ const updateCategory = async (id, name) => {
         return error.message || "Failed to update Category";
     }
 };
+
 
 const deleteCategory = async (id) => {
     try {
